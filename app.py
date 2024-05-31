@@ -4,6 +4,18 @@ import pandas as pd
 from ultralytics import YOLO
 import cv2
 
+supported_logos = '''
+    Adidas, Corona, Google, Ritter Sport,
+    Aldi, DHL, Guiness, Shell,
+    Apple, Erdinger, Heineken, Singha,
+    Becks, Esso, HP, Starbucks,
+    BMW, Fedex, Milka, Stella Artois,
+    Carlsberg, Ferrari, Nvidia, Texaco,
+    Chimay, Ford, Paulaner, 3Tsingtao,
+    Coca-Cola, Foster's, Pepsi, UPS
+'''
+
+
 @st.cache_resource
 def load_model():
     model = YOLO("weight/yolov8l-best.pt")
@@ -13,6 +25,8 @@ model = load_model()
 
 st.title("Logo Detection Demo")
 
+st.markdown("**Note:** This web application currently supports the detection of 32 specific logos.")
+st.markdown(f"Supported logos: {supported_logos}")
 st.subheader("Upload an Image")
 upload = st.file_uploader("Upload an image (PNG, JPG, or JPEG)", type=["png", "jpg", "jpeg"])
 
